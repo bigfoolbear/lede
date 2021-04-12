@@ -77,6 +77,18 @@ jobs:
           CONFIG_KERNEL_BUILD_USER="OpenWrt-CI"
           CONFIG_KERNEL_BUILD_DOMAIN="Azure"
           EOF
+          
+          # LuCI主题:
+          cat >> .config <<EOF
+          CONFIG_PACKAGE_luci-theme-argon=y
+          CONFIG_PACKAGE_luci-theme-netgear=y
+          EOF
+          
+          # 取消编译VMware镜像以及镜像填充 (不要删除被缩进的注释符号):
+          cat >> .config <<EOF
+          # CONFIG_TARGET_IMAGES_PAD is not set
+          # CONFIG_VMDK_IMAGES is not set
+          EOF
 
           #
           # ===============================================================
